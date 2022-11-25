@@ -19,7 +19,11 @@ module.exports = {
       white: '#fff'
     },
 
-    extend: {}
+    extend: {
+      boxShadow: {
+        '3xl': '-1px 0px 14px 0px rgba(0,0,0,0.29)'
+      }
+    }
   },
   plugins: []
 }

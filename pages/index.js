@@ -76,7 +76,7 @@ export default function Home() {
       </header>
       <main className="">
         <div className="my-12 mx-auto max-w-[80%] flex justify-between items-center">
-          <div className="w-[430px] flex justify-start items-center h-12 bg-white rounded-md drop-shadow-2xl dark:bg-DarkBlueD dark:text-white">
+          <div className="w-[430px] flex justify-start items-center h-12 bg-white rounded-md shadow-3xl dark:bg-DarkBlueD dark:text-white">
             <BsSearch className="mx-6" />
             <input
               type="text"
@@ -87,7 +87,7 @@ export default function Home() {
           </div>
           <select
             name=""
-            className="border-none outline-none rounded-md  bg-white w-36 p-1 h-12 border shadow-2xl text-left text-base  dark:bg-DarkBlueD dark:text-white"
+            className="border-none outline-none rounded-md  bg-white w-36 p-1 h-12 border shadow-3xl text-left text-base  dark:bg-DarkBlueD dark:text-white"
             onChange={handleSelect}
           >
             <option value="" disabled hidden>
