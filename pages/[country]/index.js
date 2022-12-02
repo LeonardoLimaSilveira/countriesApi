@@ -11,8 +11,8 @@ const index = () => {
   const [loading, setLoading] = React.useState(true)
   const [error, setError] = React.useState(false)
   const [infos, setInfos] = React.useState([])
+  const [currencie, setCurrencie] = React.useState([])
   const router = useRouter()
-  console.log(router.isReady)
 
   function handleTheme() {
     window.localStorage.setItem('dark', !darkMode)
@@ -42,10 +42,23 @@ const index = () => {
     fetchIt()
   }, [router.isReady])
 
-  React.useEffect(() => {}, [country])
+  React.useEffect(() => {
+    if (country.languages !== undefined) {
+      const languages = country.languages
+      const currencies = country.currencies
+
+      setInfos([country.languages])
+      setCurrencie([country.currencies])
+    }
+    return
+  }, [country])
 
   return (
-    <div className={darkMode ? 'dark bg-DarkBlueD' : 'bg-VeryLightGrayL'}>
+    <div
+      className={
+        darkMode ? 'dark bg-DarkBlueD h-screen' : 'bg-VeryLightGrayL h-screen'
+      }
+    >
       <div>
         <Head>
           <title>Countries API</title>
@@ -72,9 +85,9 @@ const index = () => {
         </header>
         <Link
           href="/"
-          className="flex justify-center items-center mt-24 ml-24 bg-white px-8 py-3 font-bold shadow-3xl rounded-md w-[160px]"
+          className="flex justify-center items-center mt-24 ml-24 bg-white px-8 py-3 font-bold shadow-3xl rounded-md w-[160px] dark:bg-DarkBlueD dark:text-white"
         >
-          <BsArrowLeft className="mr-3" /> Back
+          <BsArrowLeft className="mr-3 " /> Back
         </Link>
       </div>
       {loading && (
@@ -85,10 +98,10 @@ const index = () => {
       )}
       {country.name ? (
         <div
-          className="grid grid-cols-2 mx-auto my-24 bg-[red] w-[90%] h-96
+          className="grid grid-cols-2 mx-auto my-24 w-[90%] h-96
         "
         >
-          <div>
+          <div className="flex justify-center">
             <img
               src={country.flags.png}
               alt={`${country.name.common} flag`}
@@ -96,46 +109,90 @@ const index = () => {
             />
           </div>
           <div>
-            <h1>{country.name.common}</h1>
-            <div>
+            <h1 className="font-extrabold mb-4 text-2xl dark:text-white">
+              {country.name.common}
+            </h1>
+            <div className="flex w-[60%] justify-between">
               <div>
-                <h3 className="font-bold">
+                <h3 className="font-bold dark:text-white text-DarkBlueD mb-3">
                   Native Name:
-                  <span className="font-light">
-                    {country.name.nativeName.por.common}
+                  <span className="font-light dark:text-VeryLightGrayL ml-2 ">
+                    {country.altSpellings[1]}
                   </span>
                 </h3>
-                <h3 className="font-bold">
+                <h3 className="font-bold dark:text-white text-DarkBlueD mb-3">
                   Population:
-                  <span className="font-light">{country.population}</span>
+                  <span className="font-light dark:text-VeryLightGrayL ml-2">
+                    {country.population}
+                  </span>
                 </h3>
-                <h3 className="font-bold">
+                <h3 className="font-bold dark:text-white text-DarkBlueD mb-3">
                   Region:
-                  <span className="font-light">{country.region}</span>
+                  <span className="font-light dark:text-VeryLightGrayL ml-2">
+                    {country.region}
+                  </span>
                 </h3>
-                <h3 className="font-bold">
+                <h3 className="font-bold dark:text-white text-DarkBlueD mb-3">
                   Sub Region:
-                  <span className="font-light">{country.subregion}</span>
+                  <span className="font-light dark:text-VeryLightGrayL ml-2">
+                    {country.subregion}
+                  </span>
                 </h3>
-                <h3 className="font-bold">
+                <h3 className="font-bold dark:text-white text-DarkBlueD mb-3">
                   Capital:
-                  <span className="font-light">{country.capital}</span>
+                  <span className="font-light dark:text-VeryLightGrayL ml-2">
+                    {country.capital}
+                  </span>
                 </h3>
               </div>
-              <div>
-                <h3 className="font-bold">
+              <div className="">
+                <h3 className="font-bold dark:text-white text-DarkBlueD mb-3">
                   Top Level Domain:
-                  <span className="font-light">{country.tld}</span>
+                  <span className="font-light dark:text-VeryLightGrayL ml-2">
+                    {country.tld}
+                  </span>
                 </h3>
-                <h3 className="font-bold">
+                <h3 className="font-bold dark:text-white text-DarkBlueD mb-3">
                   Currencies:
-                  <span className="font-light">{}</span>
+                  {currencie.map((item, index) => {
+                    return (
+                      <span
+                        key={index}
+                        className="font-light dark:text-VeryLightGrayL ml-2"
+                      >
+                        {Object.values(item)[0].name}
+                      </span>
+                    )
+                  })}
                 </h3>
-                <h3 className="font-bold">
+                <h3 className="font-bold dark:text-white text-DarkBlueD mb-3">
                   Languages:
-                  <span className="font-light">{}</span>
+                  {infos.map(item => {
+                    return Object.values(item).map(item => {
+                      return (
+                        <span
+                          key={item}
+                          className="font-light dark:text-VeryLightGrayL ml-2"
+                        >
+                          {item}
+                        </span>
+                      )
+                    })
+                  })}
                 </h3>
               </div>
+            </div>
+            <div className="mt-14 w-full flex flex-wrap">
+              <h2 className="font-bold text-DarkBlueD inline dark:text-white">
+                {country.borders ? ' Border Countries:' : null}
+              </h2>
+              {country.borders?.map(item => {
+                return (
+                  <span className="ml-3 py-1 px-10 bg-white shadow-3xl rounded-md mb-4 dark:bg-DarkBlueD dark:text-white">
+                    {item}
+                  </span>
+                )
+              })}
             </div>
           </div>
         </div>
