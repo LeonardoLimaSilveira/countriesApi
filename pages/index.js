@@ -31,7 +31,7 @@ export default function Home() {
         setCountries(r.data)
       })
     } else {
-      setRegion('americas')
+      setRegion('africa')
     }
     if (input) {
       axios
@@ -61,12 +61,13 @@ export default function Home() {
         />
       </Head>
       <header className="shadow-md border-DarkGrayL dark:bg-DarkBlueD">
-        <div className="m-auto flex justify-between items-center h-16 max-w-[80%]">
-          <h1 className="font-extrabold text-xl text-VeryDarkBlueD dark:text-white">
+        <div className="m-auto flex justify-between items-center h-16 max-w-[80%] sm:max-w-[90%]">
+          <h1 className="font-extrabold text-xl text-VeryDarkBlueD dark:text-white sm:text-sm">
             Where in the world?
           </h1>
           <div
-            className="flex items-center justify-center text-sm text-DarkBlueD font-bold cursor-pointer dark:text-white "
+            className="flex items-center justify-center text-sm text-DarkBlueD font-bold cursor-pointer 
+            dark:text-white sm:text-xs"
             onClick={handleTheme}
           >
             {darkMode ? <BsMoonFill /> : <BsMoon />}
@@ -75,8 +76,8 @@ export default function Home() {
         </div>
       </header>
       <main className="">
-        <div className="my-12 mx-auto max-w-[80%] flex justify-between items-center">
-          <div className="w-[430px] flex justify-start items-center h-12 bg-white rounded-md shadow-3xl dark:bg-DarkBlueD dark:text-white">
+        <div className="my-12 mx-auto max-w-[80%] flex justify-between items-center sm:flex-col sm:items-start">
+          <div className="w-[430px] flex justify-start items-center h-12 bg-white rounded-md shadow-3xl dark:bg-DarkBlueD dark:text-white sm:max-w-full sm:mb-10">
             <BsSearch className="mx-6" />
             <input
               type="text"
@@ -87,10 +88,12 @@ export default function Home() {
           </div>
           <select
             name=""
-            className="border-none outline-none rounded-md  bg-white w-36 p-1 h-12 border shadow-3xl text-left text-base  dark:bg-DarkBlueD dark:text-white"
+            className="border-none outline-none rounded-md  bg-white w-36 p-1 h-12 border shadow-3xl text-left text-base  dark:bg-DarkBlueD dark:text-white
+             sm:w-[60%]
+            "
             onChange={handleSelect}
           >
-            <option value="" disabled hidden>
+            <option value="" hidden>
               Filter by region
             </option>
             <option value="africa">Africa</option>
@@ -101,7 +104,7 @@ export default function Home() {
             <option value="oceania">Oceania</option>
           </select>
         </div>
-        <div className="grid grid-cols-4 max-w-[80%] justify-center items-center mx-auto mt-12">
+        <div className="grid grid-cols-4 max-w-[80%] justify-center items-center mx-auto mt-12 sm:grid-cols-1 ">
           {error && (
             <div className="w-full h-screen ">
               <h1 className="text-[red] font-extrabold">
@@ -118,8 +121,9 @@ export default function Home() {
                     pathname: `/${item.name.common}`,
                     query: { name: `${item.name.common}` }
                   }}
+                  className="sm:m-auto"
                 >
-                  <div className="mt-12 bg-white w-[250px] shadow-xl rounded-md cursor-pointer dark:bg-DarkBlueD dark:text-white">
+                  <div className="mt-12 bg-white w-[250px] shadow-xl rounded-md cursor-pointer dark:bg-DarkBlueD dark:text-white ">
                     <img
                       src={item.flags.png}
                       alt={`${item.name.common} flag`}
@@ -148,6 +152,28 @@ export default function Home() {
             })}
         </div>
       </main>
+      <footer>
+        <div className="mx-auto py-10 text-center sm:w-[60%] break">
+          <span className="dark:text-white ">
+            Challenge by{' '}
+            <a
+              href="https://www.frontendmentor.io/"
+              target="_blank"
+              className="text-[#3737b9]"
+            >
+              Frontendmentor
+            </a>
+            . Coded by{' '}
+            <a
+              href="https://github.com/LeonardoLimaSilveira"
+              target="_blank"
+              className="text-[#3737b9]"
+            >
+              Leonardo de Lima
+            </a>
+          </span>
+        </div>
+      </footer>
     </div>
   )
 }
