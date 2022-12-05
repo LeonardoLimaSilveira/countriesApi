@@ -5,14 +5,14 @@ import React from 'react'
 
 const FourOhFour = () => {
   return (
-    <div className=" ">
+    <div>
       <div className="grid grid-cols-2 h-screen justify-center items-center">
         <div className="flex flex-col items-center max-w-[70%] m-auto ">
           <h1 className="font-extrabold text-5xl text-VeryDarkBlueL">
-            It's empty here
+            Its empty here
           </h1>
           <p className="text-DarkGrayL font-light my-6">
-            Looks like this page can't be found. Maybe it was moved or removed
+            Looks like this page cant be found. Maybe it was moved or removed
           </p>
           <Link
             href="/"

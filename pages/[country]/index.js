@@ -5,7 +5,7 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { BsMoon, BsMoonFill, BsArrowLeft } from 'react-icons/bs'
 import Head from 'next/head'
 import Link from 'next/link'
-const index = () => {
+const Index = () => {
   const [darkMode, setDarkMode] = React.useState(false)
   const [country, setCountry] = React.useState([])
   const [loading, setLoading] = React.useState(true)
@@ -88,6 +88,7 @@ const index = () => {
         <Link
           href="/"
           className="flex justify-center items-center mt-24 ml-24 sm:ml-9 sm:mt-16 bg-white px-8 py-3 font-bold shadow-3xl rounded-md w-40 sm:w-32 dark:bg-DarkBlueD dark:text-white"
+          rel="noopener noreferrer"
         >
           <BsArrowLeft className="mr-3 " /> Back
         </Link>
@@ -191,7 +192,10 @@ const index = () => {
               <div className="sm:mt-3 grid grid-cols-3 sm:grid-cols-3 sm:justify-between gap-2 items-center">
                 {country.borders?.map(item => {
                   return (
-                    <span className="ml-3 py-1 px-10 bg-white shadow-3xl rounded-md mb-4 dark:bg-DarkBlueD dark:text-white sm:ml-0 sm:text-center sm:px-0 ">
+                    <span
+                      key={item}
+                      className="ml-3 py-1 px-10 bg-white shadow-3xl rounded-md mb-4 dark:bg-DarkBlueD dark:text-white sm:ml-0 sm:text-center sm:px-0 "
+                    >
                       {item}
                     </span>
                   )
@@ -209,6 +213,7 @@ const index = () => {
               href="https://www.frontendmentor.io/"
               target="_blank"
               className="text-[#3737b9]"
+              rel="noopener noreferrer"
             >
               Frontendmentor
             </a>
@@ -217,6 +222,7 @@ const index = () => {
               href="https://github.com/LeonardoLimaSilveira"
               target="_blank"
               className="text-[#3737b9]"
+              rel="noopener noreferrer"
             >
               Leonardo de Lima
             </a>
@@ -227,4 +233,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index

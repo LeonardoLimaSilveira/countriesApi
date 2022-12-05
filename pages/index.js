@@ -122,6 +122,7 @@ export default function Home() {
                     query: { name: `${item.name.common}` }
                   }}
                   className="sm:m-auto"
+                  rel="noopener noreferrer"
                 >
                   <div className="mt-12 bg-white w-[250px] shadow-xl rounded-md cursor-pointer dark:bg-DarkBlueD dark:text-white ">
                     <img
@@ -160,6 +161,7 @@ export default function Home() {
               href="https://www.frontendmentor.io/"
               target="_blank"
               className="text-[#3737b9]"
+              rel="noopener noreferrer"
             >
               Frontendmentor
             </a>
@@ -168,6 +170,7 @@ export default function Home() {
               href="https://github.com/LeonardoLimaSilveira"
               target="_blank"
               className="text-[#3737b9]"
+              rel="noopener noreferrer"
             >
               Leonardo de Lima
             </a>
